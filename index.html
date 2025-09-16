@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Road vs Sky</title>
+    <script src="https://cdn.jsdelivr.net/npm/fetch-jsonp"></script>
+    <script defer src="server.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&family=Zain:wght@200;300;400;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="left">
+        <h1>Road vs Sky</h1>
+      </div>
+      <div class="middle">
+        <h1>Road vs Sky</h1>
+      </div>
+      <div class="right">
+        <img
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Flag_of_the_United_Kingdom_%281-2%29.svg/1200px-Flag_of_the_United_Kingdom_%281-2%29.svg.png"
+          class="lang"
+          aria-label="English"
+          alt="English"
+        />
+        <img
+          src="https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg"
+          class="lang"
+          aria-label="Spanish"
+          alt="Spanish"
+        />
+      </div>
+    </div>
+    <div class="hero">
+      <div class="hero-content">
+        <img src="assets/plane.png" class="plane" />
+        <img
+          src="https://vehicle-images.dealerinspire.com/stock-images/thumbnails/large/chrome/f38e81c27783154fad3e7f2b89059434.png"
+          class="car-logo"
+        />
+        <h2>Plan Your Journey, Your Way</h2>
+        <p>
+          Discover how much your next road trip or flight will really
+          cost—personalized for you.
+        </p>
+        <button class="startBtn">Start Comparison</button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="top-selectors">
+        <select
+          id="comingFrom"
+          name="Coming from"
+          aria-placeholder="Coming from"
+        >
+          <option disabled selected>Coming from</option>
+          <option value="MFE">Mcallen</option>
+          <option value="BRO">Brownsville</option>
+        </select>
+        <select id="headedTo" name="Headed from" aria-placeholder="Headed from">
+          <option disabled selected>Headed to</option>
+          <option value="AUS">Austin</option>
+          <option value="IAH">Houston</option>
+          <option value="DFW">Dallas</option>
+        </select>
+
+        <input
+          placeholder="Departure date"
+          type="text"
+          id="date"
+          onfocus="dateFocus(this)"
+          onblur="(this.type='text')"
+          min="2050-01-01"
+          style="padding: 6px 8px"
+        />
+        <input
+          type="number"
+          min="1"
+          placeholder="Number of people"
+          style="padding: 6px 8px"
+        />
+      </div>
+      <div class="car">
+        <div class="number">Car Details</div>
+        <div class="car-type-selector">
+          <div
+            class="car-type active automatic"
+            aria-label="Auto-Fill"
+            title="Auto-Fill"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 640 512"
+              height="200px"
+              width="200px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M318.4 16l-161 480h77.5l25.4-81.4h119.5L405 496h77.5L318.4 16zm-40.3 341.9l41.2-130.4h1.5l40.9 130.4h-83.6zM640 405l-10-31.4L462.1 358l19.4 56.5L640 405zm-462.1-47L10 373.7 0 405l158.5 9.4 19.4-56.4z"
+              ></path>
+            </svg>
+          </div>
+
+          <div
+            class="car-type manual"
+            aria-label="Manual-Fill"
+            title="Manual-Fill"
+          >
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 24 24"
+              height="200px"
+              width="200px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path fill="none" d="M0 0h24v24H0z"></path>
+              <path
+                d="M21 3.01H3c-1.1 0-2 .9-2 2V9h2V4.99h18v14.03H3V15H1v4.01c0 1.1.9 1.98 2 1.98h18c1.1 0 2-.88 2-1.98v-14a2 2 0 0 0-2-2zM11 16l4-4-4-4v3H1v2h10v3z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="selectors">
+          <select id="yearSelect" name="Year" aria-placeholder="Year">
+            <option disabled selected>Select a year</option>
+          </select>
+          <select disabled id="makeSelect" name="Make" aria-placeholder="Make">
+            <option disabled selected>Select a make</option>
+          </select>
+          <select
+            disabled
+            id="modelSelect"
+            name="Model"
+            aria-placeholder="Model"
+          >
+            <option disabled selected>Select a model</option>
+          </select>
+          <select disabled id="trimSelect" name="Trim" aria-placeholder="Trim">
+            <option disabled selected>Select a trim</option>
+          </select>
+          <input
+            type="number"
+            id="mpgInput"
+            placeholder="Miles per gallon (hwy)"
+            style="padding: 4px 8px"
+          />
+          <input
+            type="number"
+            id="ftcInput"
+            placeholder="Fuel tank capacity (g)"
+            style="padding: 4px 8px"
+          />
+        </div>
+        <div class="car-details">
+          <div class="car-image">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              viewBox="0 0 512 512"
+              height="50px"
+              width="50px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M499.99 176h-59.87l-16.64-41.6C406.38 91.63 365.57 64 319.5 64h-127c-46.06 0-86.88 27.63-103.99 70.4L71.87 176H12.01C4.2 176-1.53 183.34.37 190.91l6 24C7.7 220.25 12.5 224 18.01 224h20.07C24.65 235.73 16 252.78 16 272v48c0 16.12 6.16 30.67 16 41.93V416c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-32h256v32c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32v-54.07c9.84-11.25 16-25.8 16-41.93v-48c0-19.22-8.65-36.27-22.07-48H494c5.51 0 10.31-3.75 11.64-9.09l6-24c1.89-7.57-3.84-14.91-11.65-14.91zm-352.06-17.83c7.29-18.22 24.94-30.17 44.57-30.17h127c19.63 0 37.28 11.95 44.57 30.17L384 208H128l19.93-49.83zM96 319.8c-19.2 0-32-12.76-32-31.9S76.8 256 96 256s48 28.71 48 47.85-28.8 15.95-48 15.95zm320 0c-19.2 0-48 3.19-48-15.95S396.8 256 416 256s32 12.76 32 31.9-12.8 31.9-32 31.9z"
+              ></path>
+            </svg>
+          </div>
+        </div>
+        <div class="fill-others">Fill out the above fields first.</div>
+      </div>
+      <div class="plane-content">
+        <div class="number">Plane Details</div>
+        <div class="fill-others">Fill out the above fields first.</div>
+        <div class="generate">
+          <svg
+            stroke="currentColor"
+            fill="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            height="200px"
+            width="200px"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 5.25C16.7949 5.25 18.25 3.79493 18.25 2H19.75C19.75 3.79493 21.2051 5.25 23 5.25V6.75C21.2051 6.75 19.75 8.20507 19.75 10H18.25C18.25 8.20507 16.7949 6.75 15 6.75V5.25ZM4 7C4 5.89543 4.89543 5 6 5H13V3H6C3.79086 3 2 4.79086 2 7V17C2 19.2091 3.79086 21 6 21H18C20.2091 21 22 19.2091 22 17V12H20V17C20 18.1046 19.1046 19 18 19H6C4.89543 19 4 18.1046 4 17V7Z"
+            ></path>
+          </svg>
+          Generate Results
+        </div>
+        <div class="loader"></div>
+
+        <div class="plane-list"></div>
+      </div>
+      <div class="compare">Compare</div>
+      <div class="compared">
+        <div class="columns">
+          <p>Cost</p>
+          <p>Duration</p>
+          <p>Number of Stops</p>
+        </div>
+        <div class="plane-car-nm">
+          <p class="title">Car</p>
+          <div id="car-vals" class="values">
+            <p id="price">$10</p>
+            <p id="duration">5hr 13m</p>
+            <p id="numStops">3</p>
+          </div>
+        </div>
+        <div class="plane-car-nm">
+          <p class="title">Plane</p>
+          <div id="plane-vals" class="values">
+            <p id="price">$10</p>
+            <p id="duration">5hr 13m</p>
+            <p id="numStops">3</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
